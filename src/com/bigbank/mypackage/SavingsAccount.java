@@ -37,8 +37,9 @@ public class SavingsAccount {
     public boolean withdraw(double amount){
 
 
-        if( Balance >= amount )
+        if ( Balance >= amount ) {
             Balance -= amount;
+        }
         return true;
 
 

@@ -5,24 +5,40 @@ public class AccountHolder {
     private String firstName;
     private String middleName;
     private String lastName;
-    private String sSN;
-    private Double chkOpeningBalance;
-    private Double savOpeningBalance;
+    private String ssn;
+    private CheckingAccount checkingAccount;
+    private SavingsAccount savingsAccount;
+
+
+
 
 
     //Constructors
     public AccountHolder(){
-        System.out.println("Default Constructor");
+
+        this.checkingAccount = new CheckingAccount(0);
+        this.savingsAccount = new SavingsAccount(0);
+
     }
 
-    public AccountHolder(String firstName, String middleName, String lastName, String sSN,
-                         Double chkOpeningBalance, Double savOpeningBalance) {
+    public AccountHolder(String firstName, String middleName, String lastName, String ssn,
+                         double checkingAccountOpeningBalance, double savingAccountOpeningBalance) {
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
-        this.sSN = sSN;
-        this.chkOpeningBalance = chkOpeningBalance;
-        this.savOpeningBalance = savOpeningBalance;
+        this.ssn = ssn;
+        this.checkingAccount = new CheckingAccount(checkingAccountOpeningBalance);
+        this.savingsAccount = new SavingsAccount(savingAccountOpeningBalance);
+
+
+    }
+
+    public CheckingAccount getCheckingAccount() {
+        return checkingAccount;
+    }
+
+    public SavingsAccount getSavingsAccount() {
+        return savingsAccount;
     }
 
 
@@ -48,24 +64,9 @@ public class AccountHolder {
         return lastName;
     }
 
-    public String getsSN() {
-        return sSN;
+    public String getSsn() {
+        return ssn;
     }
-
-    /*
-
-    CheckingAccount getCheckingAccount(){
-
-
-
-
-    }
-
-    SavingsAccount getSavingsAccount(){
-
-    }
-
-    */
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -79,13 +80,17 @@ public class AccountHolder {
         this.lastName = lastName;
     }
 
-    public void setsSN(String sSN) {
-        this.sSN = sSN;
+    public void setsSN(String ssn) {
+        this.ssn = ssn;
     }
 
     @Override
     public String toString() { return "Name: " + firstName + " " + middleName +
-            " " + lastName + '\n' + "SSN: " + sSN + '\n' + "Checking Account Balance: " + chkOpeningBalance + '\n' +
-            "Savings Account Balance: " + savOpeningBalance;
+            " " + lastName + '\n' + "SSN: " + ssn + '\n' + "Checking Account Balance: " + checkingAccount.getBalance()
+            + '\n' + "Checking Account Interest Rate: " + checkingAccount.getInterestRate() +
+            '\n' + "Checking Account Balance in (3 years): " + checkingAccount.futureValue(3) + '\n' +
+            "Savings Account Balance: " + savingsAccount.getBalance() + '\n' + "Savings Account Interest Rate: " +
+            savingsAccount.getInterestRate() + '\n' + "Savings Account Balance in (3 years): " + savingsAccount.futureValue(3);
     }
+
 }

@@ -5,25 +5,25 @@ import java.lang.Math;
 public class CheckingAccount {
 
     //Global variables
-    private double Balance;
-    private final double InterestRate = 0.001;
-    private double FutureValue;
+    private double balance;
+    private final double interestRate = 0.001;
+    private double futureValue;
 
     //Constructor
     public CheckingAccount(double openingBalance){
 
-        Balance = openingBalance;
+        balance = openingBalance;
     }
 
     //Getters...just getters
     public double getBalance() {
 
 
-        return Balance;
+        return balance;
     }
 
     public double getInterestRate() {
-        return InterestRate;
+        return interestRate;
     }
 
 
@@ -34,8 +34,9 @@ public class CheckingAccount {
      */
     public boolean withdraw(double amount){
 
-        if( Balance >= amount )
-         Balance -= amount;
+        if (balance >= amount) {
+            balance -= amount;
+        }
         return true;
 
 
@@ -43,17 +44,17 @@ public class CheckingAccount {
    }
 
    public boolean deposit(double amount) {
-       Balance += amount;
+       balance += amount;
        return !(amount < 0);
 
    }
 
     public double futureValue(int years){
         double FV;
-        double PV = Balance;
+        double PV = balance;
 
 
-        FV = PV + Math.pow((1)+InterestRate,years);
+        FV = PV + Math.pow((1)+ interestRate,years);
 
         return FV;
 
@@ -62,9 +63,9 @@ public class CheckingAccount {
     @Override
     public String toString() {
         return "Checking Account Balance: " +
-                Balance + "\n" +
+                balance + "\n" +
                 "Checking Account Interest Rate: " +
-                InterestRate + "\n" + "Checking Account Balance after 3 years: " + futureValue(3);
+                interestRate + "\n" + "Checking Account Balance after 3 years: " + futureValue(3);
     }
 
 
